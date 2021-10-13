@@ -4,7 +4,7 @@ int main(int argc, char const *argv[])
     // Declaration des variables
     double c, f;
     // Saisie de la var f
-    printf("ENTREZ LA TEMPERATURE EN F");
+    printf("ENTREZ LA TEMPERATURE EN F\n");
     scanf("%lf", &f);
     // Calcul de la temperature en degree C
     c = 0.55556l * (f - 32);

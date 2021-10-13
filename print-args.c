@@ -2,6 +2,6 @@
 
 int main(int argc, char const *argv[])
 {
-    printf("the passed agrs are %s", argc);
+    printf("the number of agrs are %d", argc);
     return 0;
 }

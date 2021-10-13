@@ -7,16 +7,16 @@
 
 double f(double x)
 {
-    return (2 * x + 3) * (3 * pow(x, 2) + 2)
+    return (2 * x + 3) * (3 * (x * x) + 2);
 }
 
 int main(int argc, char const *argv[])
 {
     double x;
-
+    double f(double);
     printf("ENTRE X:\n");
     scanf("%lf", &x);
-    printf("F(%.2lf) = %lf", x, f(x));
+    printf("F(%.2lf) = %lf \n", x, f(x));
 
     return 0;
 }

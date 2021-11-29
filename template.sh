@@ -13,6 +13,9 @@ cat <<-EOF > ./$name.c
 // CREATED DATE : $(date +"%F %T")
 
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <stdlib.h>
 int main(int argc, char const *argv[])
 {
     /* code */

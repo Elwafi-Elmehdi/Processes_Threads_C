@@ -32,7 +32,8 @@ int main(int argc, char const *argv[])
     pthread_create(&thread1, NULL, afficher, (void *)&A);
     pthread_create(&thread2, NULL, afficher, (void *)&B);
     // le process pere qui a cree les deux thread n'attend meme pas leur executions d'ou vient interre d'utilisation de fonction pthread_join.
-    // pthread_join(thread1, 0);
-    // pthread_join(thread2, 0);
+    // La solution est de mettre le process pere en attente jusqu'a l'execution des threads termine.
+    pthread_join(thread1, 0);
+    pthread_join(thread2, 0);
     return 0;
 }

@@ -12,19 +12,20 @@ void *dormir(void *duree)
 {
     int *d = (int *)duree;
     sleep(*d);
-    free(duree);
     return NULL;
 }
 
 int main(int argc, char const *argv[])
 {
     pthread_t thread;
+    int nbr;
     if (argc = !2)
     {
         printf("Nombre d'arguments invalid");
         exit(1);
     }
-    pthread_create(&thread, NULL, dormir, (void *)&argv[1]);
+    nbr = atoi(argv[1]);
+    pthread_create(&thread, NULL, dormir, (void *)&nbr);
     pthread_join(thread, 0);
     return 0;
 }

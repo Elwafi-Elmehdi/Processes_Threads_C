@@ -17,5 +17,6 @@ void *dormir(void *secondes)
 {
     int s;
     s = (int)secondes;
+    printf("Bonjour je suis le thread et je dort %d", s);
     sleep(s);
 }

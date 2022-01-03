@@ -7,3 +7,20 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <sys/wait.h>
+
+int main(int argc, char const *argv[])
+{
+    char *msg = "Bonjour, je suis processus pere";
+    if (fork() == 0)
+    {
+        msg = "Bonjour, je suis processus fils";
+    }
+    else
+    {
+        wait(NULL);
+        printf("%s", msg);
+    }
+
+    return 0;
+}

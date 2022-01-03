@@ -7,12 +7,18 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <time.h>
+
+#define randnum(min, max) \
+    ((rand() % (int)(((max) + 1) - (min))) + (min))
+
 void *genererTab()
 {
     int tab[5];
+    srand(time(NULL));
     for (int i = 0; i < 5; i++)
     {
-        tab[i] = rand() / 99;
+        tab[i] = randnum(0, 99);
     }
     pthread_exit((void *)tab);
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <pthread.h>
 
 struct job
@@ -18,7 +19,6 @@ void enqueue_job(char chart, int count)
     nouveau_job->character = chart;
     nouveau_job->next = job_queue;
     job_queue = nouveau_job;
-    return NULL;
 }
 
 // La definition de la fonction process_job
@@ -28,7 +28,6 @@ void process_job(struct job *joba)
     {
         printf("%c\n", (*joba).character);
     }
-    return NULL;
 }
 
 void *thread_function(void *arg)
@@ -38,6 +37,7 @@ void *thread_function(void *arg)
         struct job *next_job = job_queue; /* Récupère la tâche suivante.*/
         job_queue = job_queue->next;      /* Supprime cette tâche de la liste.*/
         process_job(next_job);            /* Traite la tâche.*/
+        sleep(2);                         // Le programme se plante car sleep() met le thread executant en attente pendant les secondes specifiees dans sleep.
         free(next_job);                   /* Libération des ressources.*/
     }
     return NULL;

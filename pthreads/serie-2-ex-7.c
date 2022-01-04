@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <stdlib.h>
+#define _GNU_SOURCE
 #include <sched.h>
 
 int *table_multiplication(void *nbr);

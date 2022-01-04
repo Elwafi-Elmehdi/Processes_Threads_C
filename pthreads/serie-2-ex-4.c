@@ -37,6 +37,7 @@ void *thread_function(void *arg)
     while (job_queue != NULL)
     {
         pthread_mutex_lock(&mutex);
+        // pthread_mutex_lock(&mutex); losque' appel mutex_lock une deusieme fois le thread appelant est met en attente de deverrouillage du mutux or cette mutex est deja verrouillée par le meme thread appelant danc le progamme v etre bloque
         struct job *next_job = job_queue; /* Récupère la tâche suivante.*/
         job_queue = job_queue->next;      /* Supprime cette tâche de la liste.*/
         process_job(next_job);            /* Traite la tâche.*/

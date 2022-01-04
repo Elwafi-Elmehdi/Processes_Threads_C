@@ -9,6 +9,8 @@ struct job
     char character;
     int count;
 };
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 struct job *job_queue;
 
 // La definition de la fonction enqueue_job
@@ -34,11 +36,13 @@ void *thread_function(void *arg)
 {
     while (job_queue != NULL)
     {
+        pthread_mutex_lock(&mutex);
         struct job *next_job = job_queue; /* Récupère la tâche suivante.*/
         job_queue = job_queue->next;      /* Supprime cette tâche de la liste.*/
         process_job(next_job);            /* Traite la tâche.*/
         // sleep(2);                         // Le programme se plante car sleep() met le thread executant en attente pendant les secondes specifiees dans sleep.
         free(next_job); /* Libération des ressources.*/
+        pthread_mutex_unlock(&mutex);
     }
     return NULL;
 }

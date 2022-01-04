@@ -68,5 +68,6 @@ int main(int argc, char const *argv[])
     pthread_create(&t2, NULL, thread_function, NULL);
     pthread_join(t1, NULL);
     pthread_join(t2, NULL);
+    sem_destroy(&job_queue_count);
     return 0;
 }

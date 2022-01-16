@@ -9,18 +9,23 @@
 #include <pthread.h>
 
 int thread_flag;
+pthread_cond_t condition;
 pthread_mutex_t thread_flag_mutex;
-
 
 void initialize_flag()
 {
     pthread_mutex_init(&thread_flag_mutex, NULL);
+    pthread_cond_init(&condition, NULL);
     thread_flag = 0;
 }
 /* Appelle do_work de façon répétée tant que l'indicateur est actif ;
 sinon, tourne dans la boucle. */
+
+void do_work();
+
 void *thread_function(void *thread_arg)
 {
+    // pthread_cond_wait(p);
     while (1)
     {
         int flag_is_set;
@@ -34,6 +39,7 @@ void *thread_function(void *thread_arg)
     }
     return NULL;
 }
+
 /* Positionne la valeur de l'indicateur de thread à FLAG_VALUE. */
 void set_thread_flag(int flag_value)
 {
@@ -47,4 +53,9 @@ int main(int argc, char const *argv[])
 {
 
     return 0;
+}
+
+void do_work()
+{
+    printf("Bonjour Thread.");
 }

@@ -14,12 +14,12 @@
 
 void *genererTab()
 {
-    int tab[5];
-
+    int *tab = malloc(sizeof(int) * 5);
+    srand(time(NULL));
     for (int i = 0; i < 5; i++)
     {
-        srand(i * 100);
-        tab[i] = randnum(0, 99);
+
+        tab[i] = rand() % 100;
     }
     pthread_exit((void *)tab);
 }
